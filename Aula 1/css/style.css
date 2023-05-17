@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: aqua;
+  font-size: 3em!important;
+}
+
+#titulo-2 {
+  color: brown;
+}
+
+.titulo-secundario {
+  font-size: 50px;
+}
+.principal {
+  width: 960px;
+  height: 700px;
+  margin: 0 auto;
+}
+
+.lado-esquerdo {
+  width: 480px;
+  height: 700px;
+  float: left;
+}
+
+.destaque {
+  width: 250px;
+}
+
+.lado-direito {
+  width: 480px;
+  height: 700px;
+  float: left;
+}
+
+.lado-direito .topo {
+  width: 100%;
+  height: 350px;
+}
+
+.lado-direito .baixo {
+  width: 100%;
+  height: 350px;
+}
