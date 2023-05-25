@@ -7,6 +7,21 @@
   <title>Aula de Bootstrap</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/bootstrap.js"></script>
+  <script src="js/jquery.js"></script>
+
+  <script>
+    $(function(){
+
+      $('.excluir').click(function(){
+
+        $(this).parents('tr').remove();
+
+        //$('body').find('.excluir').remove();
+      });
+
+    });
+
+  </script>
 </head>
 <body>
   <div class="container">
