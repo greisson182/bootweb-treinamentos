@@ -1,17 +1,11 @@
 <?php
   include('header.php');
-
-  $conn = new PDO('mysql:host=localhost;dbname=cafecomcristo', 'root', '');
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  $stmt = $conn->prepare('SELECT * FROM pessoas as p');
+  
+  $stmt = $conexao->prepare('SELECT * FROM pessoas AS p');
   $stmt->execute();
 
   $pessoas = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-  echo '<pre>';
-  print_r($pessoas);
-  echo '</pre>';
 
   /*$listaPessoas = [];
 
@@ -27,7 +21,7 @@
 
 ?>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <a href="cadastro-pessoa-add.php" class="btn btn-primary me-md-2">Adicionar</a>
+      <a href="pessoa-add.php" class="btn btn-primary me-md-2">Adicionar</a>
     </div>
     <table class="table">
       <thead>
@@ -39,16 +33,16 @@
         </tr>
       </thead>
       <tbody>
-      <?php 
+      <?php // o trêm completo as vagão por vagão
         foreach ($pessoas as $pessoa) {
       ?>
-          <tr>
+          <tr data-id="<?=$pessoa->id?>">
             <th scope="row"><?=$pessoa->id?></th>
             <td><?php echo $pessoa->nome?></td>
             <td><?=$pessoa->email?></td>
             <td>
-              <a href="cadastro-pessoa-view.php" class="btn btn-outline-primary vizualizar">Vizualizar</a>
-              <a href="cadastro-pessoa-edit.php" hre class="btn btn-outline-info editar">Editar</a>
+              <a href="pessoa-view.php?id=<?=$pessoa->id?>" class="btn btn-outline-primary vizualizar">Vizualizar</a>
+              <a href="pessoa-edit.php?id=<?=$pessoa->id?>" hre class="btn btn-outline-info editar">Editar</a>
               <button type="button" class="btn btn-outline-danger excluir">Excluir</button>
             </td>
           </tr>

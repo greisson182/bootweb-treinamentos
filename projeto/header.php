@@ -1,3 +1,16 @@
+<?php 
+
+// faz a conexão com o banco de dados.
+$conexao = new PDO('mysql:host=localhost;dbname=cafecomcristo', 'root', '');
+$conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+function pr($dado){
+  echo '<pre>';
+  print_r($dado);
+  echo '</pre>';
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +21,27 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/bootstrap.js"></script>
   <script src="js/jquery.js"></script>
-
   <script>
     $(function(){
 
       $('.excluir').click(function(){
 
-        $(this).parents('tr').remove();
+        var parent = $(this).parents('tr');
 
+        var idPessoa = parent.attr('data-id');
+        if (confirm("Tem certeza que deseja excluir?")) {
+
+          $.post('pessoa-delete.php',{
+            id: idPessoa
+          },function(data){
+            if (data.status == 1) {
+              parent.fadeOut(function(){
+                $(this).remove();
+              });
+            }
+          },'json');
+          
+        }
         //$('body').find('.excluir').remove();
       });
 
@@ -37,7 +63,7 @@
               <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="cadastro-pessoas.php">Cadastro Pessoas</a>
+              <a class="nav-link" href="pessoas-list.php">Cadastro Pessoas</a>
             </li>
           </ul>
           <form class="d-flex">
