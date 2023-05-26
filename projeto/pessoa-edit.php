@@ -1,6 +1,10 @@
 <?php
   include('header.php');
 
+  $res = new stdClass;
+
+  $res->status = 0;
+
   $idPessoa = $_GET['id'];
   
   if (count($_POST) > 0) {
@@ -12,6 +16,7 @@
     $stmt = $conexao->prepare("UPDATE `pessoas` SET `nome`= :nome, `email`= :email, `idade`= :idade WHERE  `id`= :id ;");
     $stmt->execute(['nome' => $nome, 'email' => $email, 'idade' => $idade, 'id' => $idPessoa]);
 
+    $res->status = 1;
   }
 
   $stmt = $conexao->prepare("SELECT * FROM pessoas AS p WHERE p.id = :id");
@@ -20,6 +25,17 @@
   $pessoa = $stmt->fetch(PDO::FETCH_OBJ);
 
 
+?>
+
+<?php 
+  if ($res->status == 1) {
+?>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    Salvo com sucesso.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<?php 
+  }
 ?>
 
     <form action="" method="post">

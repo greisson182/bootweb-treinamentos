@@ -63,12 +63,12 @@ function pr($dado){
               <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pessoas-list.php">Cadastro Pessoas</a>
+              <a class="nav-link" href="pessoas-list.php">Pessoas</a>
             </li>
           </ul>
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Buscar">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
         </div>
       </div>
